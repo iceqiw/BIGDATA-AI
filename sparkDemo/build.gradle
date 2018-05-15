@@ -20,12 +20,11 @@ dependencies {
     compile "org.scala-lang:scala-reflect:2.11.8"
     compile "org.scala-lang:scala-compiler:2.11.8"
 
-    compile 'org.apache.spark:spark-sql_2.11:2.2.0'
-    compile 'org.apache.spark:spark-core_2.11:2.2.0'
-    compile 'org.apache.spark:spark-hive_2.11:2.2.0'
-    compile 'org.apache.spark:spark-streaming_2.11:2.2.0'
-    compile 'org.apache.spark:spark-mllib_2.11:2.2.0'
-    compile 'mysql:mysql-connector-java:5.1.38'
+    compile 'org.apache.spark:spark-sql_2.11:2.3.0'
+    compile 'org.apache.spark:spark-core_2.11:2.3.0'
+    compile 'org.apache.spark:spark-hive_2.11:2.3.0'
+    compile 'org.apache.spark:spark-streaming_2.11:2.3.0'
+    compile 'org.apache.spark:spark-mllib_2.11:2.3.0'
 
 }
 
