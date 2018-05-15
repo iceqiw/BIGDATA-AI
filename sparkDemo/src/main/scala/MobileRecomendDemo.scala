@@ -21,8 +21,13 @@ object MobileRecomendDemo {
       .load("data/fresh_comp_offline/tianchi_fresh_comp_train_user.csv")
     import org.apache.spark.sql.functions._
     import spark.implicits._
+    val start = "20141118"
+    val end = "20141128"
 
-    val extend_userDF=userDF.withColumn("is_buy", when(userDF("behavior_type") === "4", 1).otherwise(0))
+    val extend_userDF = userDF
+      .filter(date_format($"time", "yyyyMMdd") > start)
+      .filter(date_format($"time", "yyyyMMdd") <= end)
+      .withColumn("is_buy", when(userDF("behavior_type") === "4", 1).otherwise(0))
       .withColumn("is_favor", when(userDF("behavior_type") === "3", 1).otherwise(0))
       .withColumn("is_car", when(userDF("behavior_type") === "2", 1).otherwise(0))
       .withColumn("is_browse", when(userDF("behavior_type") === "1", 1).otherwise(0))
@@ -33,7 +38,6 @@ object MobileRecomendDemo {
     //
     //    userCategory.show()
 
-    extend_userDF.select(date_format($"time","yyyyMMdd")).show(1)
     val userBehavior = extend_userDF.groupBy("user_id", "item_category")
       .agg(
         sum("is_buy"),
@@ -41,11 +45,11 @@ object MobileRecomendDemo {
         sum("is_car"),
         sum("is_browse"))
 
-    userBehavior.filter($"sum(is_buy)" === 0).filter($"sum(is_favor)" >0).show()
+    userBehavior.filter($"sum(is_buy)" === 0).filter($"sum(is_favor)" > 0).show()
 
-//    val userBehaviorBuy = userBehavior.groupBy("user_id", "item_category").agg(("behavior_type", "collect_set"), ("count(item_category)", "collect_set"))
-//
-//    userBehaviorBuy.show()
+    //    val userBehaviorBuy = userBehavior.groupBy("user_id", "item_category").agg(("behavior_type", "collect_set"), ("count(item_category)", "collect_set"))
+    //
+    //    userBehaviorBuy.show()
 
 
     spark.stop()
