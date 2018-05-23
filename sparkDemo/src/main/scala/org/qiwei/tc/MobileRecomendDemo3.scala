@@ -21,7 +21,7 @@ object MobileRecomendDemo3 {
 //    trainDF.filter($"label"===1).show()
     val Array(trainingDF, testDF) = trainDF.randomSplit(Array(0.9, 0.1), seed = 12345)
     val output_features= new VectorAssembler()
-      .setInputCols(Array("is_buy", "is_car", "is_favor", "is_browse", "label"))
+      .setInputCols(Array("is_buy", "is_car", "is_favor", "is0_browse", "label"))
       .setOutputCol("features")
 //    trainingDF.show()
 //    testDF.show()

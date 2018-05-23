@@ -26,5 +26,7 @@ dependencies {
     compile 'org.apache.spark:spark-streaming_2.11:2.3.0'
     compile 'org.apache.spark:spark-mllib_2.11:2.3.0'
 
+    compile 'com.alibaba:fastjson:1.2.47'
+
 }
 
