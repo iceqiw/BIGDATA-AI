@@ -1,0 +1,15 @@
+target/
+gradle/
+java_code/
+out/
+.settings/
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+*.log
+*.class
+*.jar
+.project
+.classpath
